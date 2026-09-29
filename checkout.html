@@ -1,16 +1,455 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Checkout</title><link rel="stylesheet" href="styles.css"></head><body><header><h1>Checkout</h1><nav>
-<a href="index.html">Home</a><a href="search.html">Books</a><a href="other-items.html">School Supplies</a><a href="checkout.html">Checkout</a><a href="contact.html">Contact</a>
-</nav></header><main><section class="checkout-layout"><div><h2>Your Cart</h2><div id="cart-items" class="cart-box"></div><div class="totals"><p>Subtotal: <span id="checkout-subtotal">$0.00</span></p><p>Discount: <span id="discount-amount">$0.00</span></p><p class="grand-total">Total: <span id="checkout-total">$0.00</span></p></div></div>
-<form id="checkout-form" novalidate><h2>Shipping Information</h2>
-<div class="form-field"><label for="full-name">Full Name <span>*</span></label><input id="full-name" name="full-name" type="text" autocomplete="name" required><small class="field-error"></small></div>
-<div class="form-field"><label for="street-address">Street Address <span>*</span></label><input id="street-address" name="street-address" type="text" autocomplete="street-address" required><small class="field-error"></small></div>
-<div class="form-field"><label for="city">City <span>*</span></label><input id="city" name="city" type="text" autocomplete="address-level2" required><small class="field-error"></small></div>
-<div class="form-field"><label for="state">State <span>*</span></label><input id="state" name="state" type="text" autocomplete="address-level1" required><small class="field-error"></small></div>
-<div class="form-field"><label for="zip-code">ZIP Code <span>*</span></label><input id="zip-code" name="zip-code" type="text" autocomplete="postal-code" required><small class="field-error"></small></div>
-<div class="form-field"><label for="phone">Phone Number <span>*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" required><small class="field-error"></small></div>
-<h2>Purchase Information</h2>
-<div class="form-field"><label for="cardholder-name">Cardholder Name <span>*</span></label><input id="cardholder-name" name="cardholder-name" type="text" autocomplete="cc-name" required><small class="field-error"></small></div>
-<div class="form-field"><label for="card-number">Credit Card Number <span>*</span></label><input id="card-number" name="card-number" type="text" inputmode="numeric" autocomplete="cc-number" required><small class="field-error"></small></div>
-<div class="form-field"><label for="expiration">Expiration Date <span>*</span></label><input id="expiration" name="expiration" type="month" autocomplete="cc-exp" required><small class="field-error"></small></div>
-<div class="form-field"><label for="security-code">Security Code <span>*</span></label><input id="security-code" name="security-code" type="password" inputmode="numeric" maxlength="4" autocomplete="cc-csc" required><small class="field-error"></small></div>
-<div class="coupon-box"><label for="coupon-code">Coupon Code</label><input id="coupon-code" type="text" placeholder="Try STUDY10 or BOOKS15"><button type="button" id="apply-coupon">Apply Coupon</button><p id="coupon-message" class="form-message"></p></div><button type="submit">Place Demo Order</button><p id="checkout-message" class="form-message"></p></form></section><p class="demo-note">Demo only: this project validates payment fields in the browser but does not transmit or process real card information.</p></main><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Checkout</title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+</head>
+
+
+<body>
+
+<header>
+
+  <h1>Checkout</h1>
+
+  <nav>
+
+    <a href="index.html">Home</a>
+
+    <a href="search.html">Books</a>
+
+    <a href="other-items.html">
+      School Supplies
+    </a>
+
+    <a href="checkout.html">
+      Checkout
+    </a>
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+  <section class="checkout-layout">
+
+
+    <!-- =================================================
+         SHOPPING CART
+         ================================================= -->
+
+    <div>
+
+      <h2>Your Cart</h2>
+
+      <div
+        id="cart-items"
+        class="cart-box"
+      ></div>
+
+
+      <!-- Messages such as stock/quantity warnings -->
+
+      <p
+        id="cart-message"
+        class="form-message error-message"
+        aria-live="polite"
+      ></p>
+
+
+      <!-- Cart controls -->
+
+      <div class="cart-controls">
+
+        <button
+          type="button"
+          id="clear-cart"
+        >
+          Clear Entire Cart
+        </button>
+
+
+        <a
+          href="checkout.html"
+          class="checkout-button"
+        >
+          Go to Checkout
+        </a>
+
+      </div>
+
+
+      <!-- Order totals -->
+
+      <div class="totals">
+
+        <p>
+          Subtotal:
+          <span id="checkout-subtotal">
+            $0.00
+          </span>
+        </p>
+
+
+        <p>
+          Discount:
+          <span id="discount-amount">
+            $0.00
+          </span>
+        </p>
+
+
+        <p class="grand-total">
+
+          Total:
+          <span id="checkout-total">
+            $0.00
+          </span>
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CHECKOUT FORM
+         ================================================= -->
+
+    <form
+      id="checkout-form"
+      novalidate
+    >
+
+
+      <!-- SHIPPING INFORMATION -->
+
+      <h2>
+        Shipping Information
+      </h2>
+
+
+      <div class="form-field">
+
+        <label for="full-name">
+
+          Full Name
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="full-name"
+          name="full-name"
+          type="text"
+          autocomplete="name"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="street-address">
+
+          Street Address
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="street-address"
+          name="street-address"
+          type="text"
+          autocomplete="street-address"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="city">
+
+          City
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="city"
+          name="city"
+          type="text"
+          autocomplete="address-level2"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="state">
+
+          State
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="state"
+          name="state"
+          type="text"
+          autocomplete="address-level1"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="zip-code">
+
+          ZIP Code
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="zip-code"
+          name="zip-code"
+          type="text"
+          autocomplete="postal-code"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="phone">
+
+          Phone Number
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+
+      <!-- PURCHASE INFORMATION -->
+
+      <h2>
+        Purchase Information
+      </h2>
+
+
+      <div class="form-field">
+
+        <label for="cardholder-name">
+
+          Cardholder Name
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="cardholder-name"
+          name="cardholder-name"
+          type="text"
+          autocomplete="cc-name"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="card-number">
+
+          Credit Card Number
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="card-number"
+          name="card-number"
+          type="text"
+          inputmode="numeric"
+          autocomplete="cc-number"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="expiration">
+
+          Expiration Date
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="expiration"
+          name="expiration"
+          type="month"
+          autocomplete="cc-exp"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="security-code">
+
+          Security Code
+          <span>*</span>
+
+        </label>
+
+        <input
+          id="security-code"
+          name="security-code"
+          type="password"
+          inputmode="numeric"
+          maxlength="4"
+          autocomplete="cc-csc"
+          required
+        >
+
+        <small class="field-error"></small>
+
+      </div>
+
+
+
+      <!-- COUPON -->
+
+      <div class="coupon-box">
+
+        <label for="coupon-code">
+          Coupon Code
+        </label>
+
+        <input
+          id="coupon-code"
+          type="text"
+          placeholder="Try STUDY10 or BOOKS15"
+        >
+
+        <button
+          type="button"
+          id="apply-coupon"
+        >
+          Apply Coupon
+        </button>
+
+        <p
+          id="coupon-message"
+          class="form-message"
+        ></p>
+
+      </div>
+
+
+
+      <!-- PLACE ORDER -->
+
+      <button type="submit">
+
+        Place Demo Order
+
+      </button>
+
+
+      <!-- ORDER CONFIRMATION -->
+
+      <p
+        id="checkout-message"
+        class="form-message"
+        aria-live="polite"
+      ></p>
+
+
+    </form>
+
+  </section>
+
+
+  <p class="demo-note">
+
+    Demo only: this project validates payment fields
+    in the browser but does not transmit or process
+    real card information.
+
+  </p>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
