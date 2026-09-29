@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"><
-<head>
-    <meta charset="utf-8">
-    <title>Storefront Name</title>
-</head>
-<body>
-    <!-- Created by Amarren Hopkins on 9/17/2026 -->
-    <h1>My Website</h1>
-    <p>This is the beginning of my website project.</p>
-</body>
-</html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Amarren's Bookstore</title><link rel="stylesheet" href="styles.css"></head>
+<body><header><h1>Amarren's Bookstore</h1><nav>
+<a href="index.html">Home</a><a href="search.html">Books</a><a href="other-items.html">School Supplies</a><a href="checkout.html">Checkout</a><a href="contact.html">Contact</a>
+</nav></header><main>
+<section class="hero"><h2>Books & Study Essentials</h2><p>Welcome to my bookstore where you can purchase books, or other school related items in the "School Supplies" section. Also feel free to view the most recent and most popular releases below. </p></section>
+<section><h2>Recent &amp; Popular Releases</h2><p>Featured releases from the current catalog.</p><div class="product-grid" id="featured-products"></div></section>
+
+</main><footer><p>&copy; 2026 Amarren's Bookstore</p></footer><script src="script.js"></script><script>document.addEventListener("DOMContentLoaded",()=>renderProducts("featured-products",[products[0],products[1],products[2]]));</script></body></html>
