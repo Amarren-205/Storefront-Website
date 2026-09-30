@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Network Connection Test</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>Network Connection Test</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="search.html">Books</a>
+        <a href="other-items.html">School Supplies</a>
+        <a href="checkout.html">Checkout</a>
+        <a href="contact.html">Contact</a>
+        <a href="network-test.html">Network Test</a>
+    </nav>
+
+</header>
+
+
+<main>
+
+    <section class="network-test-card">
+
+        <h2>Network Connection Information</h2>
+
+        <p>
+            This page displays the connection information available
+            to the browser.
+        </p>
+
+
+        <div class="network-information">
+
+            <div class="network-row">
+
+                <strong>Local Host Name</strong>
+
+                <span id="host-name">
+                    Detecting...
+                </span>
+
+            </div>
+
+
+            <div class="network-row">
+
+                <strong>Current Communication Port</strong>
+
+                <span id="communication-port">
+                    Detecting...
+                </span>
+
+            </div>
+
+
+            <div class="network-row">
+
+                <strong>Current Transmission Protocol</strong>
+
+                <span id="transmission-protocol">
+                    Detecting...
+                </span>
+
+            </div>
+
+
+            <div class="network-row">
+
+                <strong>Last Time Launched</strong>
+
+                <span id="last-launched">
+                    Detecting...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="run-network-test"
+        >
+            Run Network Test
+        </button>
+
+
+        <p
+            id="network-test-message"
+            class="form-message"
+            aria-live="polite"
+        ></p>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>&copy; 2026 Amarren's Bookstore</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

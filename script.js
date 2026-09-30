@@ -1734,3 +1734,178 @@ document.addEventListener(
 
   }
 );
+/* =========================================================
+   NETWORK CONNECTION TEST
+   ========================================================= */
+
+function runNetworkConnectionTest() {
+
+    const hostName =
+        document.getElementById("host-name");
+
+    const communicationPort =
+        document.getElementById("communication-port");
+
+    const transmissionProtocol =
+        document.getElementById("transmission-protocol");
+
+    const lastLaunched =
+        document.getElementById("last-launched");
+
+    const message =
+        document.getElementById("network-test-message");
+
+
+    /*
+       This page cannot directly access the computer's
+       Windows/local host name from a normal browser.
+
+       Use the current hostname from the page URL instead.
+    */
+
+    if (hostName) {
+
+        hostName.textContent =
+            window.location.hostname || "localhost";
+
+    }
+
+
+    /*
+       Detect the current communication port.
+
+       If the URL does not explicitly contain a port,
+       the browser is using the protocol's default port.
+    */
+
+    if (communicationPort) {
+
+        let port =
+            window.location.port;
+
+        if (!port) {
+
+            if (window.location.protocol === "https:") {
+                port = "443";
+            }
+
+            else if (window.location.protocol === "http:") {
+                port = "80";
+            }
+
+            else {
+                port = "Not specified";
+            }
+
+        }
+
+        communicationPort.textContent =
+            port;
+
+    }
+
+
+    /*
+       Detect the transmission protocol.
+    */
+
+    if (transmissionProtocol) {
+
+        let protocol =
+            window.location.protocol
+                .replace(":", "")
+                .toUpperCase();
+
+        transmissionProtocol.textContent =
+            protocol;
+
+    }
+
+
+    /*
+       Store the most recent launch time in localStorage.
+       This allows the page to remember when it was last opened.
+    */
+
+    const currentLaunchTime =
+        new Date().toLocaleString();
+
+
+    const previousLaunchTime =
+        localStorage.getItem(
+            "networkTestLastLaunch"
+        );
+
+
+    if (lastLaunched) {
+
+        if (previousLaunchTime) {
+
+            lastLaunched.textContent =
+                previousLaunchTime;
+
+        }
+
+        else {
+
+            lastLaunched.textContent =
+                "First launch";
+
+        }
+
+    }
+
+
+    /*
+       Save the current launch time so it can be
+       displayed the next time the page is opened.
+    */
+
+    localStorage.setItem(
+        "networkTestLastLaunch",
+        currentLaunchTime
+    );
+
+
+    /*
+       Display a successful test message.
+    */
+
+    if (message) {
+
+        message.textContent =
+            "Network connection test completed successfully.";
+
+        message.className =
+            "form-message success-message";
+
+    }
+
+}
+
+
+/*
+   Run automatically when the Network Test page loads.
+*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const networkPage =
+            document.getElementById("run-network-test");
+
+        if (networkPage) {
+
+            runNetworkConnectionTest();
+
+
+            networkPage.addEventListener(
+                "click",
+                runNetworkConnectionTest
+            );
+
+        }
+
+    }
+);

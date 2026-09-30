@@ -537,3 +537,135 @@ footer {
   }
 
 }
+/* =========================================================
+   NETWORK CONNECTION TEST PAGE
+   ========================================================= */
+
+.network-test-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12);
+
+    max-width: 800px;
+
+    margin: 30px auto;
+
+}
+
+
+.network-test-card h2 {
+
+    margin-top: 0;
+
+}
+
+
+.network-information {
+
+    margin: 25px 0;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+}
+
+
+.network-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 16px;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+
+.network-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.network-row strong {
+
+    font-size: 1rem;
+
+}
+
+
+.network-row span {
+
+    font-family: monospace;
+
+    background: #f4f4f4;
+
+    padding: 6px 10px;
+
+    border-radius: 5px;
+
+    text-align: right;
+
+}
+
+
+#run-network-test {
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================================================
+   NETWORK TEST MOBILE DESIGN
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .network-test-card {
+
+        padding: 18px;
+
+        margin: 20px 0;
+
+    }
+
+
+    .network-row {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+
+    .network-row span {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: left;
+
+    }
+
+}
